@@ -23,13 +23,14 @@ function App() {
 
         <h1 className="display-3 fw-bold text-dark mb-2">Calculadora IMC</h1>
 
+        <p className="lead text-muted mb-5">
+          Ingresa tus datos y descubre tu Índice de Masa Corporal al instante.
+        </p>
 
         <img src="./public/logoheart.png" alt="logo corazon" />
 
 
-        <p className="lead text-muted mb-5">
-          Ingresa tus datos y descubre tu Índice de Masa Corporal al instante.
-        </p>
+
 
         {/* Instanciamos el formulario y le pasamos la función para actualizar el fondo */}
         <ImcForm onColorChange={setBgColor} />
