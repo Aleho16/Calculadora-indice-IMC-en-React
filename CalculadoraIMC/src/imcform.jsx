@@ -22,3 +22,6 @@ export default function imcform({ onColorChange }) {
 const pesoActual = useWatch({ control, name: 'peso'})
 const alturaActual = useWatch({ control, name: 'altura'})
 
+const imc = calcularIMC(pesoActual, alturaActual)
+const { categoria, color } = obtenerDatosIMC(imc)
+
