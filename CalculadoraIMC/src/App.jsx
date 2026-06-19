@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css'; 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import ImcForm from './ImcForm';
 
@@ -8,10 +8,10 @@ function App() {
   const [bgColor, setBgColor] = useState('var(--bg)');
 
   return (
-    <main 
-      style={{ 
-        backgroundColor: bgColor, 
-        minHeight: '100vh', 
+    <main
+      style={{
+        backgroundColor: bgColor,
+        minHeight: '100vh',
         transition: 'background-color 0.6s ease',
         display: 'flex',
         flexDirection: 'column',
@@ -20,7 +20,13 @@ function App() {
       }}
     >
       <div className="container text-center">
+
         <h1 className="display-3 fw-bold text-dark mb-2">Calculadora IMC</h1>
+
+
+        <img src="./public/logoheart.png" alt="logo corazon" />
+
+
         <p className="lead text-muted mb-5">
           Ingresa tus datos y descubre tu Índice de Masa Corporal al instante.
         </p>
