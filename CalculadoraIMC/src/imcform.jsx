@@ -11,5 +11,11 @@ const imcSchema = z.object({
     .positive("la altura debe ser mayor a 0")
 })
 
-
+export default function imcform({ onColorChange }) {
+    const { register, control, fromstate: { errors}} = useForm({
+        resolver: zodResolver(imcSchema),
+        defaultValues: { peso: '', altura: ''},
+        mode: "onChange"
+    })
+}
 
