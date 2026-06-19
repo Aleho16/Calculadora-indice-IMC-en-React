@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-import './index.css';
+import './App.css';
 import ImcForm from './ImcForm';
 
 function App() {

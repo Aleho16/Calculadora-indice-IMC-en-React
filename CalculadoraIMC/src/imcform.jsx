@@ -4,32 +4,34 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { calcularIMC, obtenerDatosIMC } from './imcLogic';
 
+// Esquema de validación con Zod
 const imcSchema = z.object({
-    peso: z.number({invalid_type_error: "ingresa un numero valido"})
-    .positive("el peso debe ser mayor a 0"),
-    altura: z.number({ invalid_type_error: "ingresa un numero valido"})
-    .positive("la altura debe ser mayor a 0")
-})
+  peso: z.number({ invalid_type_error: "Ingresa un número válido" })
+         .positive("El peso debe ser mayor a 0"),
+  altura: z.number({ invalid_type_error: "Ingresa un número válido" })
+           .positive("La altura debe ser mayor a 0")
+});
 
-export default function imcform({ onColorChange }) {
-    const { register, control, fromstate: { errors}} = useForm({
-        resolver: zodResolver(imcSchema),
-        defaultValues: { peso: '', altura: ''},
-        mode: "onChange"
-    })
-}
+export default function ImcForm({ onColorChange }) {
+  const { register, control, formState: { errors } } = useForm({
+    resolver: zodResolver(imcSchema),
+    defaultValues: { peso: '', altura: '' },
+    mode: "onChange"
+  });
 
-const pesoActual = useWatch({ control, name: 'peso'})
-const alturaActual = useWatch({ control, name: 'altura'})
+  const pesoActual = useWatch({ control, name: 'peso' });
+  const alturaActual = useWatch({ control, name: 'altura' });
 
-const imc = calcularIMC(pesoActual, alturaActual)
-const { categoria, color } = obtenerDatosIMC(imc)
+  const imc = calcularIMC(pesoActual, alturaActual);
+  const { categoria, color } = obtenerDatosIMC(imc);
 
-useEffect( () => {
-    onColorChange(color)
-}, [color, onColorChange])
+  useEffect(() => {
+    if (onColorChange) {
+      onColorChange(color);
+    }
+  }, [color, onColorChange]);
 
-return(
+  return (
     <div className="card shadow-lg p-4 mx-auto mt-4" style={{ maxWidth: '450px', borderRadius: '15px' }}>
       <form>
         <div className="mb-4">
@@ -57,7 +59,6 @@ return(
         </div>
       </form>
 
-      {/* Mostrar resultados computados */}
       <div className="text-center mt-4 p-3 border rounded bg-light">
         <h3 className="text-secondary">Tu IMC es:</h3>
         <h1 className="display-4 fw-bold mb-0">{imc > 0 ? imc : '--'}</h1>
@@ -67,3 +68,4 @@ return(
       </div>
     </div>
   );
+}
